@@ -1,0 +1,9 @@
+FROM node:16.10.0-alpine
+
+WORKDIR /api/
+
+COPY ./node_app .
+
+RUN npm install
+
+RUN npm run start

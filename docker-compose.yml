@@ -1,0 +1,25 @@
+version: "1.0"
+
+services:
+
+  r2-dbot:
+    container_name: r2dbot
+    build: .
+    environment:
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+    ports: ["3000:3000"]
+    tty: true
+    volumes:
+      - ./r2-dbot:/r2-dbot
+
+  mysql:
+    container_name: first_mysql
+    image: mysql:8.0.26
+    environment:
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+    volumes:
+      - ./mysql/data:/var/lib/mysql
+
+  adminer:
+    image: adminer
+    ports: ["8080:8080"]
