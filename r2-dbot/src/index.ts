@@ -3,7 +3,7 @@ import Commands from './commands/initCommands';
 import { Player } from 'discord-player';
 
 // Token
-const token = require('minimist')(process.argv.slice(2))['token'];
+const token = process.env.TOKEN_BOT;
 
 // Client
 const client = new Client(
@@ -25,10 +25,6 @@ async function init() {
     new Commands(client, player);
 
     client.once('ready', () => {
-        client.application?.commands.create({
-            type: "MESSAGE",
-            name: '!play',
-        });
         console.log('Bot is ready!');
 
     });

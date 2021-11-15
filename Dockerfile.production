@@ -1,9 +1,16 @@
 FROM node:16.10.0-alpine
 
-WORKDIR /api/
+ARG TOKEN_BOT
+ARG MYSQL_ROOT_PASSWORD
+ENV TOKEN_BOT $TOKEN_BOT
+ENV MYSQL_ROOT_PASSWORD $MYSQL_ROOT_PASSWORD
 
-COPY ./node_app .
+WORKDIR /r2-dbot/
+
+COPY ./r2-dbot .
+
+RUN npm install npm -g
 
 RUN npm install
 
-RUN npm run start
+ENTRYPOINT npm start

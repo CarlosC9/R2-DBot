@@ -6,21 +6,18 @@ services:
     container_name: r2dbot
     build:
       context: .
-      dockerfile: Dockerfile
-    environment:
-      - MYSQL_ROOT_PASSWORD=secret
+      dockerfile: Dockerfile.production
+      args:
       - TOKEN_BOT=ODkwOTU5MDM2MDQyODQyMTcy.YU3YQw.IM1GE6ohFXXTbuSvFLx-Y_HzRLw
-    ports: ["3000:3000"]
-    volumes:
-      - ./r2-dbot:/r2-dbot
+      - MYSQL_ROOT_PASSWORD=secret
+    tty: true
 
   mysql:
     container_name: first_mysql
     image: mysql:8.0.26
     environment:
       - MYSQL_ROOT_PASSWORD=secret
-    volumes:
-      - ./mysql/data:/var/lib/mysql
+    tty: true
 
   adminer:
     image: adminer

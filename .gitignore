@@ -1,3 +1,4 @@
 mysql
 r2-dbot/node_modules
 r2-dbot/package-lock.json
+.env
